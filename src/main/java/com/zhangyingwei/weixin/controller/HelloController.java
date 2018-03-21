@@ -46,7 +46,6 @@ public class HelloController {
     @PostMapping("/miner")
     public String action(HttpServletRequest request) throws IOException, DocumentException {
         WxRequest wxreq = WxUtils.getRequest(request);
-
         logger.info("{} 收到来自 {} 的消息",wxreq.getCreateTime(),wxreq.getFromUserName());
         if (WxUtils.isMySelf(wxreq.getFromUserName())) {
             return this.minerHandler.doHandler(wxreq).toXml();
